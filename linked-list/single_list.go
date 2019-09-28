@@ -26,12 +26,12 @@ type SingleList struct {
 
 // 无序尾部插入
 func (list *SingleList) DisorderTailInsert(node *PersonNode) {
-	if list.Head == nil {
-		list.Head = node	// 第一个结点 既是头结点，也是尾结点
+	if list.Head.Next == nil {
+		list.Head.Next = node
 		list.Tail = node
 	} else {
 		list.Tail.Next = node 	// 之后的结点往尾结点上加
-		// list.Tail = node
+
 		list.Tail = list.Tail.Next 	// 更新尾结点
 	}
 
@@ -39,41 +39,30 @@ func (list *SingleList) DisorderTailInsert(node *PersonNode) {
 }
 
 func (list *SingleList) Find(name string) *PersonNode {
-	if list.Head == nil {
-		return nil
-	}
 
 	temp := list.Head
 	for {
-		if 0 == strings.Compare(temp.Name, name) {
-			return temp
-		}
-		temp = temp.Next
-		if temp == nil {
+		if temp.Next == nil {
 			break
 		}
+		if 0 == strings.Compare(temp.Next.Name, name) {
+			return temp.Next
+		}
+		temp = temp.Next
+
 	}
 
 	return nil
 }
 
 func (list *SingleList) Delete(name string) (popNode *PersonNode) {
-	if list.Head == nil {
-		return nil
-	}
 
-	if 0 == strings.Compare(list.Head.Name, name) {
-		// 头结点就是要删除的结点
-		popNode = list.Head
-		list.Head = list.Head.Next
-		list.Length--
-		return
-	}
-
-	// 删除其他结点
-	temp := &PersonNode{}	// temp 指向一个空结点
-	temp.Next = list.Head	// temp.Next 指向头结点
+	temp := list.Head
 	for {
+		if temp.Next == nil {
+			break
+		}
+
 		if 0 != strings.Compare(temp.Next.Name, name) {	// temp始终是正在比较结点的前一个结点
 			temp = temp.Next	// temp后移
 		} else {
@@ -84,35 +73,31 @@ func (list *SingleList) Delete(name string) (popNode *PersonNode) {
 			list.Length--
 			return
 		}
-
-		if temp.Next == nil {
-			break
-		}
 	}
 
 	return nil
 }
 
 func (list *SingleList) ShowList() {
-	if list.Head == nil {
-		fmt.Println("empty list")
-		return
-	}
+
 	fmt.Println("链表长度为：", list.Length)
 	temp := list.Head
 	for {
-		fmt.Printf("[%s(%d)] --> ", temp.Name, temp.Age)
-		temp = temp.Next
-		if temp == nil {
+		if temp.Next == nil {
 			break
 		}
+		fmt.Printf("[%s(%d)] --> ", temp.Next.Name, temp.Next.Age)
+		temp = temp.Next
+
 	}
 	fmt.Println()
 	fmt.Println()
 }
 
 func NewSingleList() *SingleList {
-	return &SingleList{}
+	return &SingleList{
+		Head:&PersonNode{},
+	}
 }
 
 func main() {
