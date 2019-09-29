@@ -48,13 +48,13 @@ func (list *SingleList) OrderInsert(node *PersonNode) {
 			temp.Next = node
 			list.Length++
 			break
-		} else if temp.Next.Age >= node.Age && temp.Next.Name != node.Name{
+		} else if temp.Next.Age == node.Age && temp.Next.Name == node.Name{
+			fmt.Println(node, "结点已存在")
+			break
+		} else if temp.Next.Age >= node.Age {
 			node.Next = temp.Next
 			temp.Next = node
 			list.Length++
-			break
-		} else if temp.Next.Age == node.Age && temp.Next.Name == node.Name{
-			fmt.Println(node, "结点已存在")
 			break
 		}
 
