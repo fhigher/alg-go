@@ -38,6 +38,31 @@ func (list *SingleList) DisorderTailInsert(node *PersonNode) {
 	list.Length++
 }
 
+// 有序插入, 增序
+func (list *SingleList) OrderInsert(node *PersonNode) {
+
+	temp := list.Head
+
+	for {
+		if temp.Next == nil {
+			temp.Next = node
+			list.Length++
+			break
+		} else if temp.Next.Age >= node.Age && temp.Next.Name != node.Name{
+			node.Next = temp.Next
+			temp.Next = node
+			list.Length++
+			break
+		} else if temp.Next.Age == node.Age && temp.Next.Name == node.Name{
+			fmt.Println(node, "结点已存在")
+			break
+		}
+
+		temp = temp.Next
+	}
+}
+
+
 func (list *SingleList) Find(name string) *PersonNode {
 
 	temp := list.Head
@@ -106,13 +131,20 @@ func main() {
 
 	singleList = NewSingleList()
 
-	fmt.Println("添加结点：")
-	singleList.DisorderTailInsert(NewPersonNode("张三", 22))
-	singleList.DisorderTailInsert(NewPersonNode("李四", 19))
-	singleList.DisorderTailInsert(NewPersonNode("王天", 33))
-	singleList.DisorderTailInsert(NewPersonNode("玉玉", 10))
-	singleList.DisorderTailInsert(NewPersonNode("蛋蛋", 20))
+	//fmt.Println("添加结点，无序：")
+	//singleList.DisorderTailInsert(NewPersonNode("张三", 22))
+	//singleList.DisorderTailInsert(NewPersonNode("李四", 19))
+	//singleList.DisorderTailInsert(NewPersonNode("王天", 33))
+	//singleList.DisorderTailInsert(NewPersonNode("玉玉", 10))
+	//singleList.DisorderTailInsert(NewPersonNode("蛋蛋", 20))
 
+	fmt.Println("添加结点，有序：")
+	singleList.OrderInsert(NewPersonNode("张三", 22))
+	singleList.OrderInsert(NewPersonNode("李四", 19))
+	singleList.OrderInsert(NewPersonNode("王天", 33))
+	singleList.OrderInsert(NewPersonNode("玉玉", 45))
+	singleList.OrderInsert(NewPersonNode("王天", 33))
+	singleList.OrderInsert(NewPersonNode("张衡", 33))
 	singleList.ShowList()
 
 	fmt.Println("查找结点：")
@@ -120,25 +152,10 @@ func main() {
 	unknown := singleList.Find("张飒")
 	fmt.Println(person, unknown)
 	fmt.Println()
+
 	fmt.Println("删除结点：")
-	// 删除第一个结点
 	firstPerson := singleList.Delete("张三")
-	fmt.Println("被删除的头结点", firstPerson)
-	singleList.ShowList()
-
-	// 删除尾结点
-	tailPerson := singleList.Delete("蛋蛋")
-	fmt.Println("被删除的尾结点", tailPerson)
-	singleList.ShowList()
-
-	// 删除中间的某个结点
-	midPerson := singleList.Delete("王天")
-	fmt.Println("被删除的中间某结点", midPerson)
-	singleList.ShowList()
-
-	// 删除不存在的结点
-	unknownPerson := singleList.Delete("无名")
-	fmt.Println("删除不存在的结点", unknownPerson)
+	fmt.Println("被删除的结点", firstPerson)
 	singleList.ShowList()
 }
 
