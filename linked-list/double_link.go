@@ -67,6 +67,29 @@ func (d *DoubleLink) OrderInsert(node *Node) {
 	}
 }
 
+func (d *DoubleLink) DelNode(name string, age int) (node *Node) {
+	temp := d.Head
+
+	for {
+		if temp.Next == nil {
+			fmt.Println("没有找到要删除的元素")
+			break
+		}
+
+		if temp.Next.Age == age && temp.Next.Name == name {
+			temp.Next.Next.Pre = temp
+			node = temp.Next
+			temp.Next = temp.Next.Next
+			d.Length--
+			return
+		}
+
+		temp = temp.Next
+	}
+
+	return
+}
+
 // 顺序输出
 func (d *DoubleLink) ShowList() {
 	temp := d.Head
@@ -116,5 +139,10 @@ func main() {
 
 	d.ShowList()
 	d.BackShow()
+
+	fmt.Println("删除节点")
+	d.DelNode("李四", 22)
+	d.DelNode("张强", 8)
+	d.ShowList()
 }
 
