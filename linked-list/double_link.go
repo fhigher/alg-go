@@ -77,9 +77,11 @@ func (d *DoubleLink) DelNode(name string, age int) (node *Node) {
 		}
 
 		if temp.Next.Age == age && temp.Next.Name == name {
-			temp.Next.Next.Pre = temp
 			node = temp.Next
 			temp.Next = temp.Next.Next
+			if temp.Next != nil {
+				temp.Next.Pre = temp
+			}
 			d.Length--
 			return
 		}
@@ -142,7 +144,7 @@ func main() {
 
 	fmt.Println("删除节点")
 	d.DelNode("李四", 22)
-	d.DelNode("张强", 8)
+	d.DelNode("张强", 44)
 	d.ShowList()
 }
 
