@@ -1,4 +1,4 @@
-package main
+package queue
 
 import (
 	"errors"
@@ -9,22 +9,22 @@ import (
 
 type Seqqueue struct {
 	Maxsize int
-	Data []int
-	Head int
-	Tail int
+	Data    []int
+	Head    int
+	Tail    int
 }
 
 func NewSeqqueue(maxsize int) *Seqqueue {
 	return &Seqqueue{
 		Maxsize: maxsize,
-		Data: make([]int, maxsize),
-		Head: 0,
-		Tail: 0,
+		Data:    make([]int, maxsize),
+		Head:    0,
+		Tail:    0,
 	}
 }
 
 func (q *Seqqueue) IsFull() bool {
-	return (q.Tail + 1) % q.Maxsize == q.Head
+	return (q.Tail+1)%q.Maxsize == q.Head
 }
 
 func (q *Seqqueue) IsEmpty() bool {
@@ -35,11 +35,11 @@ func (q *Seqqueue) Size() int {
 	return (q.Tail + q.Maxsize - q.Head) % q.Maxsize
 }
 
-func (q *Seqqueue) Push(e int) error{
+func (q *Seqqueue) Push(e int) error {
 	if q.IsFull() {
 		return errors.New("queue is full")
 	}
-	
+
 	q.Tail = (q.Tail + 1) % q.Maxsize
 	q.Data[q.Tail] = e
 
@@ -57,7 +57,7 @@ func (q *Seqqueue) Pop() (int, error) {
 	return e, nil
 }
 
-func (q *Seqqueue) All() ([]int, error){
+func (q *Seqqueue) All() ([]int, error) {
 	size := q.Size()
 	if 0 == size {
 		return nil, errors.New("queue is empty")
@@ -71,7 +71,7 @@ func (q *Seqqueue) GetFront() (front int, err error) {
 		return 0, errors.New("queue is empty")
 	}
 
-	front = q.Data[(q.Head + 1) % q.Maxsize]
+	front = q.Data[(q.Head+1)%q.Maxsize]
 	return
 }
 
@@ -180,4 +180,3 @@ func main() {
 		}
 	}
 }
-

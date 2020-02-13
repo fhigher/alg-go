@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type CircleNode struct {
-	No int
+	No   int
 	Next *CircleNode
 }
 

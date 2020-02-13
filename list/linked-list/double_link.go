@@ -4,21 +4,21 @@ import "fmt"
 
 type Node struct {
 	Name string
-	Age int
-	Pre *Node
+	Age  int
+	Pre  *Node
 	Next *Node
 }
 
 func NewNode(name string, age int) *Node {
 	return &Node{
 		Name: name,
-		Age: age,
+		Age:  age,
 	}
 }
 
 type DoubleLink struct {
-	Head *Node
-	Tail *Node
+	Head   *Node
+	Tail   *Node
 	Length int
 }
 
@@ -147,4 +147,3 @@ func main() {
 	d.DelNode("张强", 44)
 	d.ShowList()
 }
-

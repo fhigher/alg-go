@@ -1,5 +1,7 @@
 package sorting
 
+import "github.com/FHigher/algorithm/sort"
+
 func MergeSort(arr []int, n int) {
 	mergeSort(arr, 0, n-1)
 }
@@ -10,7 +12,7 @@ func mergeSort(arr []int, low, high int) {
 		return
 	}*/
 	if high-low <= 15 { // optimize 2
-		InsertionSortRange(arr, low, high)
+		sort.InsertionSortRange(arr, low, high)
 		return
 	}
 

@@ -1,7 +1,7 @@
-package main
+package sort
 
 import (
-	"github.com/FHigher/algorithm/sorting"
+	"github.com/FHigher/algorithm/sort/sorting"
 	"github.com/FHigher/algorithm/utils"
 )
 

@@ -7,20 +7,20 @@ import (
 
 type PersonNode struct {
 	Name string
-	Age int
+	Age  int
 	Next *PersonNode
 }
 
 func NewPersonNode(name string, age int) *PersonNode {
 	return &PersonNode{
 		Name: name,
-		Age: age,
+		Age:  age,
 	}
 }
 
 type SingleList struct {
-	Head *PersonNode
-	Tail *PersonNode
+	Head   *PersonNode
+	Tail   *PersonNode
 	Length int
 }
 
@@ -30,9 +30,9 @@ func (list *SingleList) DisorderTailInsert(node *PersonNode) {
 		list.Head.Next = node
 		list.Tail = node
 	} else {
-		list.Tail.Next = node 	// 之后的结点往尾结点上加
+		list.Tail.Next = node // 之后的结点往尾结点上加
 
-		list.Tail = list.Tail.Next 	// 更新尾结点
+		list.Tail = list.Tail.Next // 更新尾结点
 	}
 
 	list.Length++
@@ -48,7 +48,7 @@ func (list *SingleList) OrderInsert(node *PersonNode) {
 			temp.Next = node
 			list.Length++
 			break
-		} else if temp.Next.Age == node.Age && temp.Next.Name == node.Name{
+		} else if temp.Next.Age == node.Age && temp.Next.Name == node.Name {
 			fmt.Println(node, "结点已存在")
 			break
 		} else if temp.Next.Age >= node.Age {
@@ -61,7 +61,6 @@ func (list *SingleList) OrderInsert(node *PersonNode) {
 		temp = temp.Next
 	}
 }
-
 
 func (list *SingleList) Find(name string) *PersonNode {
 
@@ -88,8 +87,8 @@ func (list *SingleList) Delete(name string) (popNode *PersonNode) {
 			break
 		}
 
-		if 0 != strings.Compare(temp.Next.Name, name) {	// temp始终是正在比较结点的前一个结点
-			temp = temp.Next	// temp后移
+		if 0 != strings.Compare(temp.Next.Name, name) { // temp始终是正在比较结点的前一个结点
+			temp = temp.Next // temp后移
 		} else {
 			// 找到要删除的结点，先保存
 			popNode = temp.Next
@@ -121,7 +120,7 @@ func (list *SingleList) ShowList() {
 
 func NewSingleList() *SingleList {
 	return &SingleList{
-		Head:&PersonNode{},
+		Head: &PersonNode{},
 	}
 }
 
@@ -158,5 +157,3 @@ func main() {
 	fmt.Println("被删除的结点", firstPerson)
 	singleList.ShowList()
 }
-
-
