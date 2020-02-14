@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// 计算f运行时间
 func RunningTime(funcName string, f func(arr []int, n int), arr []int, n int) {
 	//fmt.Println("before sorting: ", arr)
 	startTime := time.Now().UnixNano()
@@ -15,6 +16,7 @@ func RunningTime(funcName string, f func(arr []int, n int), arr []int, n int) {
 	//fmt.Println("after sorting: ", arr)
 }
 
+// 生成随机数数组
 func GenerateRandNums(n int) (arr []int) {
 	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < n; i++ {
