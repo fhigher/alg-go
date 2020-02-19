@@ -13,11 +13,11 @@ func TestNewArrayList(t *testing.T) {
 
 func TestArrayList_Append(t *testing.T) {
 	fmt.Print("最终数组: ")
-	arrayList := arrayListAppend(50)
+	arrayList := ArrayListAppend(50)
 	arrayList.Print()
 }
 
-func arrayListAppend(size int) *arrayList {
+func ArrayListAppend(size int) *arrayList {
 	arrayList := NewArrayList(size)
 
 	randNumArr := utils.GenerateRandNums(size)
@@ -35,8 +35,8 @@ var insertMap = map[int]string{
 	11: "eee",
 }
 
-func TestPop_Delete_Search(t *testing.T) {
-	arrayList := arrayListAppend(10)
+func TestPop_Delete_Search_Iterator(t *testing.T) {
+	arrayList := ArrayListAppend(10)
 	//arrayList.Append("abc") // 此处使内部切片空间扩容为原来容量的2倍
 	arrayList.Print()
 
@@ -79,5 +79,13 @@ func TestPop_Delete_Search(t *testing.T) {
 			}
 			arrayList.Print()
 		}
+	})
+
+	t.Run("iterator", func(t *testing.T) {
+		for iter := arrayList.Iterator(); iter.FrontHasNext(); {
+			fmt.Printf("%v ", iter.FrontNext())
+		}
+
+		fmt.Println()
 	})
 }

@@ -3,6 +3,7 @@ package array_list
 import (
 	"errors"
 	"fmt"
+	"github.com/FHigher/algorithm/list"
 )
 
 type IArrayList interface {
@@ -16,10 +17,13 @@ type IArrayList interface {
 	DeleteByIndex(index int) (interface{}, error)
 	Pop() (interface{}, error)
 	Print()
+	Clear()
+	list.Iterable
 }
 
 type arrayList struct {
 	elements []interface{}
+	initSize int
 }
 
 var (
@@ -32,7 +36,13 @@ var (
 func NewArrayList(size int) *arrayList {
 	return &arrayList{
 		elements: make([]interface{}, 0, size),
+		initSize: size,
 	}
+}
+
+// Clear
+func (list *arrayList) Clear() {
+	list.elements = make([]interface{}, 0, list.initSize)
 }
 
 // Append
@@ -160,4 +170,8 @@ func (list *arrayList) DeleteByIndex(index int) (value interface{}, err error) {
 // Print
 func (list *arrayList) Print() {
 	fmt.Printf("长度: %d, 容量：%d, 元素：%v\n", len(list.elements), cap(list.elements), list.elements)
+}
+
+func (list *arrayList) Iterator() list.Iterator {
+	return NewArrayListIterator(list)
 }
