@@ -45,8 +45,6 @@ func DelNode(head *CircleNode, no int) {
 			break
 		}
 	}
-
-	return
 }
 
 func ShowLink(head *CircleNode) {
@@ -67,30 +65,4 @@ func ShowLink(head *CircleNode) {
 	fmt.Println()
 }
 
-func main() {
-	head := &CircleNode{}
 
-	fmt.Println("添加节点")
-	InsertNode(head, &CircleNode{1, nil})
-	InsertNode(head, &CircleNode{0, nil})
-	InsertNode(head, &CircleNode{3, nil})
-	InsertNode(head, &CircleNode{2, nil})
-	ShowLink(head)
-
-	fmt.Println("删除节点")
-	DelNode(head, 1)
-	ShowLink(head)
-	DelNode(head, 3)
-	ShowLink(head)
-	DelNode(head, 2)
-	ShowLink(head)
-
-	fmt.Println("添加节点")
-	InsertNode(head, &CircleNode{5, nil})
-	InsertNode(head, &CircleNode{7, nil})
-	ShowLink(head)
-
-	fmt.Println("删除节点")
-	DelNode(head, 5)
-	ShowLink(head)
-}

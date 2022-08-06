@@ -124,26 +124,3 @@ func (d *DoubleLink) BackShow() {
 	fmt.Println()
 	fmt.Println()
 }
-
-func main() {
-	d := NewDoubleLink()
-	//fmt.Println("无序添加结点：")
-	//d.DisorderInsert(NewNode("李四", 22))
-	//d.DisorderInsert(NewNode("王伟", 11))
-	//d.DisorderInsert(NewNode("张强", 44))
-
-	fmt.Println("有序添加结点")
-	d.OrderInsert(NewNode("李四", 22))
-	d.OrderInsert(NewNode("王伟", 11))
-	d.OrderInsert(NewNode("张强", 44))
-	d.OrderInsert(NewNode("张强", 8))
-	d.OrderInsert(NewNode("张强", 44))
-
-	d.ShowList()
-	d.BackShow()
-
-	fmt.Println("删除节点")
-	d.DelNode("李四", 22)
-	d.DelNode("张强", 44)
-	d.ShowList()
-}

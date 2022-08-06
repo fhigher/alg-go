@@ -1,4 +1,4 @@
-package sort
+package main
 
 import (
 	"github.com/FHigher/algorithm/sort/sorting"
