@@ -16,11 +16,7 @@ func NewArrayListIterator(arrayList *arrayList) list.Iterator {
 }
 
 func (iter *ArrayListIterator) FrontHasNext() bool {
-	if iter.FrontIndex == len(iter.ArrayList.elements) {
-		return false
-	}
-
-	return true
+	return iter.FrontIndex != len(iter.ArrayList.elements)
 }
 
 func (iter *ArrayListIterator) FrontNext() interface{} {
@@ -31,11 +27,7 @@ func (iter *ArrayListIterator) FrontNext() interface{} {
 }
 
 func (iter *ArrayListIterator) BackHasNext() bool {
-	if iter.BackIndex < 0 {
-		return false
-	}
-
-	return true
+	return iter.BackIndex >= 0
 }
 
 func (iter *ArrayListIterator) BackNext() interface{} {

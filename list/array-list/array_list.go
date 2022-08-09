@@ -28,9 +28,9 @@ type arrayList struct {
 }
 
 var (
-	ListIsEmpty     = errors.New("空列表")
-	ListIsFull      = errors.New("列表已满")
-	IndexOutOfRange = errors.New("索引超出范围")
+	ErrListIsEmpty     = errors.New("空列表")
+	ErrListIsFull      = errors.New("列表已满")
+	ErrIndexOutOfRange = errors.New("索引超出范围")
 )
 
 // 初始化
@@ -55,9 +55,7 @@ func (list *arrayList) Append(value interface{}) {
 func (list *arrayList) expand() {
 	newList := make([]interface{}, 0, list.Size()*2)
 	//copy(newList, list.elements) 此处copy没有发生作用，newList 仍然是空的，可能因为值类型是interface
-	for _, e := range list.elements {
-		newList = append(newList, e)
-	}
+	newList = append(newList, list.elements...)
 	list.elements = newList
 }
 
@@ -65,7 +63,7 @@ func (list *arrayList) expand() {
 func (list *arrayList) Insert(index int, value interface{}) error {
 
 	if index < 0 || index >= list.Size() {
-		return IndexOutOfRange
+		return ErrIndexOutOfRange
 	}
 
 	if list.IsFull() {
@@ -101,7 +99,7 @@ func (list *arrayList) Pop() (value interface{}, err error) {
 	size := list.Size()
 
 	if size == 0 {
-		return nil, ListIsEmpty
+		return nil, ErrListIsEmpty
 	}
 
 	value = list.elements[size-1]
@@ -112,20 +110,11 @@ func (list *arrayList) Pop() (value interface{}, err error) {
 
 // IsEmpty
 func (list *arrayList) IsEmpty() bool {
-
-	if list.Size() == 0 {
-		return true
-	}
-
-	return false
+	return list.Size() == 0
 }
 
 func (list *arrayList) IsFull() bool {
-	if list.Size() == cap(list.elements) {
-		return true
-	}
-
-	return false
+	return list.Size() == cap(list.elements)
 }
 
 // DeleteByValue
@@ -134,7 +123,7 @@ func (list *arrayList) DeleteByValue(value interface{}) (int, error) {
 	delIndex := -1
 
 	if list.IsEmpty() {
-		return delIndex, ListIsEmpty
+		return delIndex, ErrListIsEmpty
 	}
 
 	for i, e := range list.elements {
@@ -154,7 +143,7 @@ func (list *arrayList) DeleteByValue(value interface{}) (int, error) {
 func (list *arrayList) DeleteByIndex(index int) (value interface{}, err error) {
 
 	if list.IsEmpty() {
-		return nil, ListIsEmpty
+		return nil, ErrListIsEmpty
 	}
 
 	for i, e := range list.elements {
