@@ -3,7 +3,8 @@ package array_list
 import (
 	"errors"
 	"fmt"
-	"github.com/FHigher/algorithm/list"
+
+	"github.com/fhigher/algorithm/list"
 )
 
 type IArrayList interface {

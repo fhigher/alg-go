@@ -1,3 +1,3 @@
-module github.com/FHigher/algorithm
+module github.com/fhigher/algorithm
 
-go 1.13
+go 1.17

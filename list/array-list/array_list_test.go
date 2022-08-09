@@ -2,8 +2,9 @@ package array_list
 
 import (
 	"fmt"
-	"github.com/FHigher/algorithm/utils"
 	"testing"
+
+	"github.com/fhigher/algorithm/utils"
 )
 
 func TestNewArrayList(t *testing.T) {

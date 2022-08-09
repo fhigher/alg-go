@@ -1,6 +1,6 @@
 package array_list
 
-import "github.com/FHigher/algorithm/list"
+import "github.com/fhigher/algorithm/list"
 
 type ArrayListIterator struct {
 	ArrayList  *arrayList

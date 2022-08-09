@@ -2,8 +2,9 @@ package array_list
 
 import (
 	"fmt"
-	"github.com/FHigher/algorithm/list"
 	"testing"
+
+	"github.com/fhigher/algorithm/list"
 )
 
 func CreateArrayListIterator(size int) list.Iterator {

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/FHigher/algorithm/sort/sorting"
-	"github.com/FHigher/algorithm/utils"
+	"github.com/fhigher/algorithm/sort/sorting"
+	"github.com/fhigher/algorithm/utils"
 )
 
 func main() {

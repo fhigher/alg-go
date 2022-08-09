@@ -1,8 +1,8 @@
 package stack
 
 import (
-	"github.com/FHigher/algorithm/list"
-	"github.com/FHigher/algorithm/list/array-list"
+	"github.com/fhigher/algorithm/list"
+	array_list "github.com/fhigher/algorithm/list/array-list"
 )
 
 type IStack2 interface {
