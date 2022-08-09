@@ -4,11 +4,14 @@ func MergeSort(arr []int, n int) {
 	mergeSort(arr, 0, n-1)
 }
 
+// 对于几乎有序的数据，归并排序仍然是O(nlogn), 但插入排序可以从O(n^2)退化到O(n).
+// 给归并排序加上两个优化，可以提升整体排序性能
 func mergeSort(arr []int, low, high int) {
 
 	/*if low >= high {
 		return
 	}*/
+	// 当数据变少时，几乎有序的概率很高
 	if high-low <= 15 { // optimize 2
 		InsertionSortRange(arr, low, high)
 		return
