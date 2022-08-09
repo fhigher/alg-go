@@ -11,37 +11,9 @@ const (
 	colCount = 4
 )
 
-func main() {
-	var (
-		array       [][]int
-		sparseArray []node
-		backArray   [][]int
-	)
-	array = initArray(rowCount, colCount)
-	array[1][2] = 1
-	array[2][3] = 2
-
-	fmt.Println("原始数组：")
-	printArray(array)
-
-	fmt.Println("稀疏数组：")
-	sparseArray = transferSparse(array, rowCount, colCount)
-	for _, row := range sparseArray {
-		fmt.Printf("%d\t%d\t%d\n", row.row, row.col, row.val)
-	}
-
-	fmt.Println("原始数组")
-	backArray = initArray(rowCount, colCount)
-	for _, row := range sparseArray[1:] {
-		backArray[row.row][row.col] = row.val
-	}
-	printArray(backArray)
-
-}
-
 func initArray(row, col int) (array [][]int) {
 	array = make([][]int, row)
-	for i, _ := range array {
+	for i := range array {
 		array[i] = make([]int, col)
 	}
 

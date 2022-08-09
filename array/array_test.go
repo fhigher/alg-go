@@ -48,6 +48,16 @@ func TestRemoveDuplicates2(t *testing.T) {
 	}
 }
 
+func TestBinarySearch(t *testing.T) {
+	for _, d := range data {
+		sort.Ints(d)
+		index := binarySearch(d, 5)
+		fmt.Println("find 5 at :", index)
+		index = binarySearchRecursive(d, 5)
+		fmt.Println("find 5 at :", index)
+	}
+}
+
 /* var data2 [][]int = [][]int{
 	{2, 0, 2, 1, 1, 0},
 	{2, 0, 1},
