@@ -100,7 +100,7 @@ func (mt *MerkleTree) PreOrderRange(root *MerkleNode) {
 	}
 	hash := append(root.Left.Data, root.Right.Data...)
 	hashByte := sha256.Sum256(hash)
-	if bytes.Compare(root.Data, hashByte[:]) == 0 {
+	if bytes.Equal(root.Data, hashByte[:]) {
 		log.Println("该节点的hash值, 等于两个子节点组合后的hash值")
 	} else {
 		log.Println("该节点的hash值, 不等于两个子节点组合后的hash值")
