@@ -1,14 +1,18 @@
 package tree
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/fhigher/algorithm/queue"
+)
 
 type Key int
 type Value string
 
 type Node struct {
-	k Key
-	v Value
-	left *Node
+	k     Key
+	v     Value
+	left  *Node
 	right *Node
 }
 
@@ -74,7 +78,7 @@ func (t *Bst) InsertIterator(k Key, v Value) {
 	if node == nil {
 		if pre.k > k {
 			pre.left = NewNode(k, v)
-		} 
+		}
 
 		if pre.k < k {
 			pre.right = NewNode(k, v)
@@ -153,5 +157,23 @@ func (t *Bst) lastOrder(node *Node) {
 		t.lastOrder(node.left)
 		t.lastOrder(node.right)
 		fmt.Printf("%v = %v, ", node.k, node.v)
+	}
+}
+
+func (t *Bst) TransverseOrder() {
+	queue := queue.NewSimpleQueue()
+	queue.Enqueue(t.root)
+
+	for queue.Size() != 0 {
+		front, _ := queue.Dequeue()
+		node := front.(*Node)
+		fmt.Printf("%v = %v, ", node.k, node.v)
+		if node.left != nil {
+			queue.Enqueue(node.left)
+		}
+
+		if node.right != nil {
+			queue.Enqueue(node.right)
+		}
 	}
 }

@@ -11,12 +11,12 @@ type entry struct {
 }
 
 var data = []entry{
-	{10, "a"}, 
+	{10, "a"},
 	{20, "b"},
-	{8, "c"}, 
-	{6, "d"}, 
+	{8, "c"},
+	{6, "d"},
 	{7, "e"},
-	{3, "f"}, 
+	{3, "f"},
 	{40, "g"},
 }
 
@@ -35,7 +35,7 @@ func TestBstRecursive(t *testing.T) {
 	v := bst.Search(Key(3))
 	t.Log(*v)
 
-	if ! bst.Contain(Key(30)) {
+	if !bst.Contain(Key(30)) {
 		bst.InsertRecursive(Key(30), "new value")
 	}
 
@@ -46,11 +46,17 @@ func TestBstRecursive(t *testing.T) {
 	fmt.Println("前序遍历： ")
 	bst.PreOrderIterator()
 	fmt.Println()
+
 	fmt.Println("中序遍历： ")
 	bst.MidOrderIterator()
 	fmt.Println()
+
 	fmt.Println("后序遍历： ")
 	bst.LastOrderIterator()
+	fmt.Println()
+
+	fmt.Println("层序遍历： ")
+	bst.TransverseOrder()
 }
 
 func TestBstIterator(t *testing.T) {
@@ -68,7 +74,7 @@ func TestBstIterator(t *testing.T) {
 	v := bst.Search(Key(3))
 	t.Log(*v)
 
-	if ! bst.Contain(Key(30)) {
+	if !bst.Contain(Key(30)) {
 		bst.InsertIterator(Key(30), "new value")
 	}
 
@@ -87,4 +93,7 @@ func TestBstIterator(t *testing.T) {
 	fmt.Println()
 	fmt.Println("后序遍历： ")
 	bst.LastOrderIterator()
+	fmt.Println()
+	fmt.Println("层序遍历： ")
+	bst.TransverseOrder()
 }
