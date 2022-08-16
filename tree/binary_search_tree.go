@@ -160,6 +160,7 @@ func (t *Bst) lastOrder(node *Node) {
 	}
 }
 
+// 层序遍历
 func (t *Bst) TransverseOrder() {
 	queue := queue.NewSimpleQueue()
 	queue.Enqueue(t.root)
@@ -176,4 +177,57 @@ func (t *Bst) TransverseOrder() {
 			queue.Enqueue(node.right)
 		}
 	}
+}
+
+func (t *Bst) Min() *Node {
+	return t.min(t.root)
+}
+
+func (t *Bst) min(node *Node) *Node {
+	if node.left == nil {
+		return node
+	}
+	return t.min(node.left)
+}
+
+func (t *Bst) Max() *Node {
+	return t.max(t.root)
+}
+
+func (t *Bst) max(node *Node) *Node {
+	if node.right == nil {
+		return node
+	}
+
+	return t.max(node.right)
+}
+
+func (t *Bst) RemoveMin() {
+	t.removeMin(t.root)
+}
+
+func (t *Bst) removeMin(node *Node) *Node {
+	if node.left == nil {
+		rightNode := node.right
+		t.size -- 
+		return rightNode
+	}
+
+	node.left = t.removeMin(node.left)
+	return node
+}
+
+func (t *Bst) RemoveMax() {
+	t.removeMax(t.root)
+}
+
+func (t *Bst) removeMax(node *Node) *Node {
+	if node.right == nil {
+		leftNode := node.left
+		t.size -- 
+		return leftNode
+	}
+
+	node.right = t.removeMax(node.right)
+	return node
 }

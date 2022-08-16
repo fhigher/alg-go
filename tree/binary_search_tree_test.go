@@ -57,6 +57,23 @@ func TestBstRecursive(t *testing.T) {
 
 	fmt.Println("层序遍历： ")
 	bst.TransverseOrder()
+	fmt.Println()
+
+	fmt.Println("最小值： ", bst.Min().k)
+
+	fmt.Println("最大值： ", bst.Max().k)
+
+	fmt.Println("删除最小值前元素数量： ", bst.Size())
+	bst.RemoveMin()
+
+	fmt.Println("删除后最小值： ", bst.Min().k, "元素数量： ", bst.Size())
+	fmt.Println()
+
+	fmt.Println("删除最大值前元素数量： ", bst.Size())
+	bst.RemoveMax()
+
+	fmt.Println("删除后最大值： ", bst.Max().k, "元素数量： ", bst.Size())
+	fmt.Println()
 }
 
 func TestBstIterator(t *testing.T) {
@@ -96,4 +113,21 @@ func TestBstIterator(t *testing.T) {
 	fmt.Println()
 	fmt.Println("层序遍历： ")
 	bst.TransverseOrder()
+	fmt.Println()
+
+	fmt.Println("最小值： ", bst.Min().k)
+
+	fmt.Println("最大值： ", bst.Max().k)
+
+	fmt.Println("删除最小值前元素数量： ", bst.Size())
+	bst.RemoveMin()
+
+	fmt.Println("删除后最小值： ", bst.Min().k, "元素数量： ", bst.Size())
+	fmt.Println()
+
+	fmt.Println("删除最大值前元素数量： ", bst.Size())
+	bst.RemoveMax()
+
+	fmt.Println("删除后最大值： ", bst.Max().k, "元素数量： ", bst.Size())
+	fmt.Println()
 }
