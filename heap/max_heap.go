@@ -10,17 +10,6 @@ type Elem interface {
 	Compare(j Elem) bool
 }
 
-// Person ..
-type Person struct {
-	Name  string
-	Money float64
-}
-
-// Compare ..
-func (s *Person) Compare(j Elem) bool {
-	return s.Money > j.(*Person).Money
-}
-
 // MaxHeap ..
 type MaxHeap struct {
 	Heap []Elem
@@ -72,7 +61,7 @@ func (m *MaxHeap) Print() {
 var errEmpty = errors.New("堆为空")
 
 // Delete 删除堆顶元素
-func (m *MaxHeap) Delete() (Elem, error) {
+func (m *MaxHeap) DeleteMax() (Elem, error) {
 	if len(m.Heap) == 0 {
 		return nil, errEmpty
 	}

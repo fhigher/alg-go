@@ -5,6 +5,17 @@ import (
 	"testing"
 )
 
+// Person ..
+type Person struct {
+	Name  string
+	Money float64
+}
+
+// Compare ..
+func (s *Person) Compare(j Elem) bool {
+	return s.Money > j.(*Person).Money
+}
+
 var data = []*Person{
 	{
 		Name:  "zhangsan",
@@ -50,7 +61,7 @@ func TestInsertAndDelete(t *testing.T) {
 	maxHeap.Print()
 
 	for maxHeap.Size > 0 {
-		e, err := maxHeap.Delete()
+		e, err := maxHeap.DeleteMax()
 		if nil != err {
 			fmt.Println(err)
 		}
