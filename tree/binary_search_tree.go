@@ -25,6 +25,15 @@ func NewNode(k Key, v Value) *Node {
 	}
 }
 
+func NewNodeCopy(node *Node) *Node {
+	return &Node{
+		k: node.k,
+		v: node.v,
+		left: node.left,
+		right: node.right,
+	}
+}
+
 type Bst struct {
 	root *Node
 	size int
@@ -202,8 +211,8 @@ func (t *Bst) max(node *Node) *Node {
 	return t.max(node.right)
 }
 
-func (t *Bst) RemoveMin() {
-	t.removeMin(t.root)
+func (t *Bst) RemoveMin() *Node {
+	return t.removeMin(t.root)
 }
 
 func (t *Bst) removeMin(node *Node) *Node {
@@ -217,8 +226,8 @@ func (t *Bst) removeMin(node *Node) *Node {
 	return node
 }
 
-func (t *Bst) RemoveMax() {
-	t.removeMax(t.root)
+func (t *Bst) RemoveMax() *Node {
+	return t.removeMax(t.root)
 }
 
 func (t *Bst) removeMax(node *Node) *Node {
@@ -230,4 +239,40 @@ func (t *Bst) removeMax(node *Node) *Node {
 
 	node.right = t.removeMax(node.right)
 	return node
+}
+
+func (t *Bst) Remove(k Key) *Node {
+	return t.remove(t.root, k)
+}
+
+func (t *Bst) remove(node *Node, k Key) *Node {
+	if node == nil {
+		return nil
+	}
+
+	if node.k < k {
+		node.right = t.remove(node.right, k)
+		return node
+	} else if node.k > k {
+		node.left = t.remove(node.left, k)
+		return node
+	} else {
+		if node.left == nil {
+			t.size --
+			return node.right
+		}
+
+		if node.right == nil {
+			t.size --
+			return node.left
+		}
+
+		s := NewNodeCopy(t.min(node.right))
+		t.size ++
+		
+		s.left = node.left
+		s.right = t.removeMin(node.right)
+
+		return s
+	}
 }
