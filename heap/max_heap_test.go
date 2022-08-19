@@ -40,7 +40,7 @@ var data = []*Person{
 	},
 }
 
-func TestInsert(t *testing.T) {
+func TestInsertAndDelete(t *testing.T) {
 	maxHeap := NewMaxHeap()
 
 	for _, e := range data {
