@@ -51,16 +51,33 @@ var data = []*Person{
 	},
 }
 
-func TestInsertAndDelete(t *testing.T) {
+func TestInsertAndDeleteMax(t *testing.T) {
 	maxHeap := NewMaxHeap()
 
 	for _, e := range data {
 		maxHeap.Insert(e)
 	}
 
+	deleteMax(maxHeap)
+}
+
+func TestFromArrayAndDeleteMax(t *testing.T) {
+	maxHeap := NewMaxHeap()
+
+	arr := make([]Elem, len(data))
+	for i := 0; i < len(data); i++ {
+		arr[i] = data[i]
+	}
+	
+	maxHeap.FromArray(arr)
+
+	deleteMax(maxHeap)
+}
+
+func deleteMax(maxHeap *MaxHeap) {
 	maxHeap.Print()
 
-	for maxHeap.Size > 0 {
+	for maxHeap.Size() > 0 {
 		e, err := maxHeap.DeleteMax()
 		if nil != err {
 			fmt.Println(err)
