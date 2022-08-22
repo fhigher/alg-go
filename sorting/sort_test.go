@@ -33,6 +33,7 @@ func TestHeapSort(t *testing.T) {
 		arrElem[i] = elem(arr[i])
 	}
 	fmt.Println("sort before: ", arrElem)
-	HeapSort(arrElem)
+	//HeapSort(arrElem)
+	HeapSortArray(arrElem)
 	fmt.Println("sort after: ", arrElem)
 }

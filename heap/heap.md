@@ -22,3 +22,8 @@
     parent(i) = i / 2
     left child(i) = 2 * i
     right child(i) = 2 * i + 1
+
+    从下标0开始存储，则
+    parent(i) = (i - 1) / 2
+    left child(i) = 2 * i + 1
+    right child(i) = 2 * i + 2
